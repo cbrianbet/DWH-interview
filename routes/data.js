@@ -5,10 +5,10 @@ const jwt = require("jsonwebtoken");
 const { decode } = require('../middlewares/jwt')
 
 //hospital
-router.get("/add/patient", dataController);
-router.post("/push/monthly", dataController);
-router.post("/get/facilities", dataController);
-router.get("/get/pushed", dataController);
+router.get("/add/patient", decode, dataController.addPatient);
+router.post("/push/monthly", decode, dataController.pushMonthly);
+router.post("/get/facilities", decode, dataController.facilities);
+router.get("/get/pushed", decode, dataController.getPushed);
 
 //admin
 
