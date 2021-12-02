@@ -4,18 +4,26 @@ const logger = require('morgan');
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const db = require("./db_connection");
+const cors = require("cors");
 
 const users = require("./routes/users");
 const http = require("http");
-// const data = require("./routes/data");
+const data = require("./routes/data");
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use(logger('dev'))
+app.use(logger('dev'));
+app.use(cors());
+app.options('*', cors())
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
 app.use("/api/auth", users);
-app.use("/", users);
-// app.use("/api/data", data);
+app.use("/api/data", data);
 
 app.use((err, req, res, next) => {
     const status = err.status || 500;

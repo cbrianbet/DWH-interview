@@ -22,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
         model: 'facilities',
         key: 'id'
       }
+    },
+    gender: {
+      type: DataTypes.STRING(255),
+      allowNull: true
     }
   }, {
     sequelize,
