@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 const db = require("./db_connection");
 const cors = require("cors");
+const path = require("path");
 
 const users = require("./routes/users");
 const http = require("http");
@@ -24,6 +25,9 @@ app.use(function(req, res, next) {
 
 app.use("/api/auth", users);
 app.use("/api/data", data);
+
+// Serve static assets from the 'public' directory
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use((err, req, res, next) => {
     const status = err.status || 500;
