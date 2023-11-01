@@ -6,6 +6,8 @@ const { decode } = require('../middlewares/jwt')
 
 //hospital
 router.post("/add/patient", decode, dataController.addPatient);
+router.post("/add/hr", dataController.addHR);
+router.get("/get/hr", dataController.getHR);
 router.post("/push/monthly", decode, dataController.pushMonthly);
 router.get("/get/facilities", decode, dataController.facilities);
 

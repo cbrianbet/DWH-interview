@@ -7,7 +7,7 @@ module.exports = {
                 updatedAt: new Date()
             },
             {
-                accessLevel: 'hospital',
+                accessLevel: 'user',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },

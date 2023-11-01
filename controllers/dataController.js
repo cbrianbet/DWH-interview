@@ -28,6 +28,35 @@ exports.addPatient = async (req, res, next) => {
     }
 }
 
+exports.addHR = async (req, res, next) => {
+    try {
+        console.log(req.body);
+
+        let newHR = req.body;
+        newHR.createdAt = new Date();
+        newHR.updatedAt = new Date();
+        
+        await models.hr.create(newHR);
+
+
+        return res.status(201).json({message: "Details recorded successfully"});
+    } catch (error) {
+        error.status = 400;
+        next(error);
+    }
+}
+
+exports.getHR = async (req, res, next) => {
+    try {
+        let hr_data = await models.hr.findAll();
+
+		res.json({ hr_data });
+    } catch (error) {
+        error.status = 400;
+        next(error);
+    }
+}
+
 exports.pushMonthly = async (req, res, next) => {
     try {
         let facility_user = await models.facilityusers.findOne({where: {user: req.userId}})

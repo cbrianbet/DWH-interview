@@ -6,6 +6,7 @@ var _patients = require("./patients");
 var _pushdata = require("./pushdata");
 var _sequelizemeta = require("./sequelizemeta");
 var _users = require("./users");
+var _hr = require("./hr");
 
 function initModels(sequelize) {
   var accesslevels = _accesslevels(sequelize, DataTypes);
@@ -15,6 +16,7 @@ function initModels(sequelize) {
   var pushdata = _pushdata(sequelize, DataTypes);
   var sequelizemeta = _sequelizemeta(sequelize, DataTypes);
   var users = _users(sequelize, DataTypes);
+  var hr = _hr(sequelize, DataTypes);
 
   users.belongsTo(accesslevels, { as: "accesslevel_accesslevel", foreignKey: "accesslevel"});
   accesslevels.hasMany(users, { as: "users", foreignKey: "accesslevel"});
@@ -37,6 +39,7 @@ function initModels(sequelize) {
     pushdata,
     sequelizemeta,
     users,
+    hr
   };
 }
 module.exports = initModels;
